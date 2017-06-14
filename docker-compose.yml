@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  apiclima:
+    build: ./apiclima
+    volumes:
+      - ./apiclima/config/config.js.docker:/app/config/config.js
+    depends_on: 
+      - mongodb
+    command: /app/wait-for-it.sh mongodb:27017 -- npm start
+    ports:
+      - 3000:3000
+  planetas:
+    build: ./planetas
+    volumes:
+      - ./planetas/config/config.js.docker:/app/config/config.js
+    depends_on:
+      - mongodb
+    command: /app/wait-for-it.sh mongodb:27017 -- npm start
+  mongodb:
+    image: mongo:3.4
+

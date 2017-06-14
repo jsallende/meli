@@ -1,0 +1,4 @@
+module.exports = {
+    db: 'mongodb:27017/planetas',
+    port: 3000
+}
